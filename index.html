@@ -9,7 +9,6 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<!-- Bengali Font -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -197,13 +196,11 @@ font-size:18px;
 
 <div class="app">
 
-<!-- HEADING -->
 <div class="page-heading">
 <span class="material-icons">menu_book</span>
 Definitions
 </div>
 
-<!-- TOP -->
 <div class="topbar">
 
 <div class="search-box" id="searchBox">
@@ -220,7 +217,6 @@ close
 
 </div>
 
-<!-- LIST -->
 <div id="listContainer">
 <div class="loading">Loading...</div>
 </div>
@@ -325,15 +321,26 @@ listContainer.appendChild(card);
 
 }
 
-/* TOGGLE */
+/* TOGGLE (UPDATED) */
 function toggle(btn, i){
 
 const el = document.getElementById("d-" + i);
+const isCurrentlyVisible = el.style.display === "block";
 
-if(el.style.display === "block"){
-el.style.display = "none";
-btn.innerText = "Read More";
-}else{
+// ১. পেজের সমস্ত খোলা থাকা ডিটেইলস এবং বাটন টেক্সট রিসেট করা
+const allDetails = document.querySelectorAll('.expand-details');
+const allButtons = document.querySelectorAll('.read-more');
+
+allDetails.forEach(detail => {
+detail.style.display = "none";
+});
+
+allButtons.forEach(button => {
+button.innerText = "Read More";
+});
+
+// ২. বর্তমান ক্লিক করা আইটেমটি বন্ধ থাকলে তা ওপেন করা
+if (!isCurrentlyVisible) {
 el.style.display = "block";
 btn.innerText = "Read Less";
 }
